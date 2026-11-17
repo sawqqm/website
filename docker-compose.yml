@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:17
+    container_name: website-db
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_USER: website_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: website_db
+    
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - website_data:/var/lib/postgresql/data
+    
+volumes:
+    website_data:
